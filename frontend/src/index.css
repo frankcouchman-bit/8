@@ -1,0 +1,5 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+:root { color-scheme: dark; } html, body, #root { height: 100%; }
+.glass { @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl; }
+.premium { @apply shadow-premium; }
+@media (prefers-reduced-motion: reduce) { * { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; } }

@@ -1,0 +1,19 @@
+{
+  "name": "seoscribe-pro",
+  "private": true,
+  "version": "1.2.0",
+  "scripts": {
+    "postinstall": "cd frontend && npm install && cd ../backend && npm install || true",
+    "dev": "concurrently \"npm:dev:frontend\" \"npm:dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build || echo backend-build-skip",
+    "preview": "cd frontend && npm run preview",
+    "zip": "python3 scripts/build_zip.py"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
