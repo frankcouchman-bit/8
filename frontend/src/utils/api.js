@@ -22,8 +22,27 @@ export async function fetchProfile() {
   return toJson(r);
 }
 
-// ✅ Alias so files importing `getProfile` keep working
+// ✅ Alias so imports using `getProfile` still work
 export { fetchProfile as getProfile };
+
+// 🔐 Magic link sender for Login.jsx
+export async function sendMagicLink(email, options = {}) {
+  if (!email) throw new Error('Email is required');
+
+  const redirectTo =
+    options.redirectTo ||
+    (typeof window !== 'undefined'
+      ? `${window.location.origin}/login/callback`
+      : undefined);
+
+  const r = await fetch(`${BASE}/api/magic-link`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...bearer() },
+    body: JSON.stringify({ email, redirectTo, ...options }),
+  });
+
+  return toJson(r);
+}
 
 export async function generateDraft(payload) {
   const r = await fetch(`${BASE}/api/draft`, {
