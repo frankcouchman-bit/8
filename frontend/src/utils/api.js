@@ -22,6 +22,9 @@ export async function fetchProfile() {
   return toJson(r);
 }
 
+// ✅ Alias so files importing `getProfile` keep working
+export { fetchProfile as getProfile };
+
 export async function generateDraft(payload) {
   const r = await fetch(`${BASE}/api/draft`, {
     method: 'POST',
